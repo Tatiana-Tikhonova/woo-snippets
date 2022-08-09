@@ -1,0 +1,150 @@
+/*home-tabs*/
+.home-tabs {
+    @include row-flex();
+    padding-top: 80px;
+
+    @media (max-width: $md2) {
+        padding-top: 60px;
+    }
+
+    .err-message {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        font-size: 24px;
+    }
+}
+
+.home-tabs__buttons {
+    @include col();
+    @include size(12);
+    border-bottom: 1px solid rgba(59, 71, 76, 0.3);
+}
+
+.home-tabs-buttons__btn {
+    position: relative;
+    font-size: 24px;
+    color: $dark-color;
+    padding-top: 10px;
+    margin-right: 10px;
+
+    @media (max-width: $md2) {
+        font-size: 20px;
+    }
+
+    @media (max-width: $md4) {
+        font-size: 18px;
+    }
+
+    @media (max-width: $md6) {
+        font-size: 16px;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        background-color: $primary-color;
+        display: none;
+    }
+
+    &.active {
+        color: $primary-color;
+
+        &::after {
+            display: block;
+        }
+    }
+}
+
+.home-tabs__panel {
+    position: relative;
+    width: 98%;
+    margin-right: 1%;
+    margin-left: 1%;
+    min-height: 400px;
+    padding-top: 20px;
+
+    .products {
+        .woocommerce-loop-product__title {
+            margin-bottom: 5px;
+        }
+
+        .price {
+            @media (max-width: $md3) {
+                font-size: 14px;
+            }
+        }
+
+        .slick-arrow.slick-next {
+            right: -10px;
+        }
+
+        .slick-arrow.slick-prev {
+            left: -10px;
+        }
+    }
+
+    .product {
+        @include col();
+        @include size(3);
+        min-width: 23%;
+
+        @media (max-width: $md3) {
+            @include size(4);
+            min-width: 31.3333%;
+        }
+
+        @media (max-width: 650px) {
+            @include size(6);
+            min-width: 48%;
+        }
+
+        @media (max-width: $md6) {
+            .price {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            @include size(12);
+            min-width: 98%;
+        }
+
+        &.slick-slide {
+            display: flex !important;
+            width: auto;
+            min-width: 224px;
+            max-width: 224px;
+            height: auto;
+            margin: 0 10px;
+        }
+    }
+}
+
+.home-tabs__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: $light-color;
+    opacity: 0;
+    pointer-events: none;
+
+    &.visible {
+        opacity: 0.5;
+    }
+}
