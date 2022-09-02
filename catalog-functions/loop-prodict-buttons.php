@@ -20,3 +20,30 @@ if (!function_exists('tati_template_loop_product_link')) {
             ';
     }
 }
+/**
+ * замена текста на кнопке товара в цикле
+ */
+add_filter('woocommerce_product_add_to_cart_text', 'custom_woocommerce_product_add_to_cart_text');
+function custom_woocommerce_product_add_to_cart_text()
+{
+    global $product;
+    $product_type = $product->get_type();
+    switch ($product_type) {
+        case 'external':
+            return 'Перейти';
+            break;
+        case 'grouped':
+            return 'Посмотреть';
+            break;
+        case 'simple':
+            return 'В корзину';
+            break;
+        case 'variable':
+            return 'Выбрать';
+            break;
+        default:
+            return 'Подробнее';
+    }
+}
+// убрать кнопки в корзину со стр каталога
+remove_action('woocommerce_after_shop_loop_item',  'woocommerce_template_loop_add_to_cart', 10);

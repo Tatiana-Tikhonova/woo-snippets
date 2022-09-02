@@ -20,3 +20,13 @@ function tati_breadcrumb_wrapper($array)
     $array['wrap_after'] = '</div></nav>';
     return $array;
 }
+
+/**
+ * если это не конкретный шаблон страницы 
+ * то вывести хлебные крошки на кастомном хуке 
+ * (можно  внутри контейнера тогда функции выше не нужны)
+ */
+
+if (!is_page_template('page-home.php')) {
+    add_action('tati_open_content_wrapper', 'woocommerce_breadcrumb', 20);
+}
